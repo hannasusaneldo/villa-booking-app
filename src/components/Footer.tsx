@@ -3,52 +3,55 @@
 export default function Footer() {
   const currentYear = new Date().getFullYear();
   return (
-    <footer style={{ backgroundColor: "#1a3c34", color: "#ffffff" }} className="pt-16 pb-8">
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+    <footer style={{ backgroundColor: "#0a0806", color: "#ffffff", padding: "4rem 0 2rem 0", fontFamily: "'Jost', sans-serif" }}>
+      <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 2rem" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "3rem", marginBottom: "3rem" }}>
           <div>
-            <h3 style={{ color: "#c9a84c" }} className="text-2xl font-bold mb-4">La Santiya</h3>
-            <p style={{ color: "#cbd5e1" }} className="text-sm leading-relaxed">
+            <h3 style={{ color: "#D4B98C", fontSize: "1.4rem", fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, marginBottom: "1rem", letterSpacing: "0.05em" }}>La Santiya</h3>
+            <p style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.8rem", lineHeight: "1.8", fontWeight: 300, letterSpacing: "0.05em" }}>
               A private luxury villa retreat for those who seek comfort and unforgettable experiences.
             </p>
           </div>
           <div>
-            <h4 style={{ color: "#c9a84c" }} className="text-sm font-semibold uppercase tracking-widest mb-4">Explore</h4>
-            <ul className="space-y-2">
-              <li><Link href="/" style={{ color: "#cbd5e1" }} className="text-sm">Home</Link></li>
-              <li><Link href="/about" style={{ color: "#cbd5e1" }} className="text-sm">About</Link></li>
-              <li><Link href="/gallery" style={{ color: "#cbd5e1" }} className="text-sm">Gallery</Link></li>
-              <li><Link href="/contact" style={{ color: "#cbd5e1" }} className="text-sm">Contact</Link></li>
+            <h4 style={{ color: "#D4B98C", fontSize: "9px", fontWeight: 300, letterSpacing: "0.3em", textTransform: "uppercase", marginBottom: "1.2rem" }}>Explore</h4>
+            <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+              {[{ label: "Home", href: "/" }, { label: "About", href: "/about" }, { label: "Gallery", href: "/gallery" }, { label: "Contact", href: "/contact" }].map((link) => (
+                <li key={link.href} style={{ marginBottom: "0.6rem" }}>
+                  <Link href={link.href} style={{ color: "rgba(255,255,255,0.45)", fontSize: "9px", fontWeight: 300, letterSpacing: "0.2em", textTransform: "uppercase", textDecoration: "none" }}>
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
           <div>
-            <h4 style={{ color: "#c9a84c" }} className="text-sm font-semibold uppercase tracking-widest mb-4">Contact Us</h4>
-            <ul className="space-y-3">
-              <li>
-                <a href="https://wa.me/916282868859" target="_blank" rel="noopener noreferrer" style={{ color: "#cbd5e1" }} className="text-sm">
+            <h4 style={{ color: "#D4B98C", fontSize: "9px", fontWeight: 300, letterSpacing: "0.3em", textTransform: "uppercase", marginBottom: "1.2rem" }}>Contact Us</h4>
+            <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+              <li style={{ marginBottom: "0.6rem" }}>
+                <a href="https://wa.me/916282868859" target="_blank" rel="noopener noreferrer" style={{ color: "rgba(255,255,255,0.45)", fontSize: "9px", fontWeight: 300, letterSpacing: "0.2em", textTransform: "uppercase", textDecoration: "none" }}>
                   WhatsApp: +91 6282868859
                 </a>
               </li>
-              <li>
-                <a href="tel:+916282868859" style={{ color: "#cbd5e1" }} className="text-sm">
+              <li style={{ marginBottom: "0.6rem" }}>
+                <a href="tel:+916282868859" style={{ color: "rgba(255,255,255,0.45)", fontSize: "9px", fontWeight: 300, letterSpacing: "0.2em", textTransform: "uppercase", textDecoration: "none" }}>
                   Phone: +91 6282868859
                 </a>
               </li>
               <li>
-                <a href="mailto:hannasusaneldo03@gmail.com" style={{ color: "#cbd5e1" }} className="text-sm">
+                <a href="mailto:hannasusaneldo03@gmail.com" style={{ color: "rgba(255,255,255,0.45)", fontSize: "9px", fontWeight: 300, letterSpacing: "0.2em", textDecoration: "none" }}>
                   hannasusaneldo03@gmail.com
                 </a>
               </li>
             </ul>
           </div>
         </div>
-        <div style={{ borderTop: "1px solid #2d5a4e" }} className="pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p style={{ color: "#94a3b8" }} className="text-xs">© {currentYear} La Santiya. All rights reserved.</p>
-            <div className="flex gap-6">
-              <Link href="/privacy" style={{ color: "#94a3b8" }} className="text-xs">Privacy Policy</Link>
-              <Link href="/terms" style={{ color: "#94a3b8" }} className="text-xs">Terms of Use</Link>
-            </div>
+        <div style={{ borderTop: "1px solid rgba(212, 185, 140, 0.15)", paddingTop: "2rem", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          <p style={{ color: "rgba(255,255,255,0.25)", fontSize: "9px", fontWeight: 300, letterSpacing: "0.2em", textTransform: "uppercase" }}>
+            © {currentYear} La Santiya. All rights reserved.
+          </p>
+          <div style={{ display: "flex", gap: "2rem" }}>
+            <Link href="/privacy" style={{ color: "rgba(255,255,255,0.25)", fontSize: "9px", fontWeight: 300, letterSpacing: "0.2em", textTransform: "uppercase", textDecoration: "none" }}>Privacy Policy</Link>
+            <Link href="/terms" style={{ color: "rgba(255,255,255,0.25)", fontSize: "9px", fontWeight: 300, letterSpacing: "0.2em", textTransform: "uppercase", textDecoration: "none" }}>Terms of Use</Link>
           </div>
         </div>
       </div>
