@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import Gallery from "@/components/Gallery";
 import Location from "@/components/Location";
 import Amenities from "@/components/Amenities";
+import Testimonials from "@/components/Testimonials";
 export default function Home() {
    const heroRef = useRef<HTMLDivElement>(null);
 
@@ -79,6 +80,7 @@ export default function Home() {
         </div>
       </section>
       <Gallery />
+      <Testimonials />
       <Location />
       <Amenities />
       <Footer />
