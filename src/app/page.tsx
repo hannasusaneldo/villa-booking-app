@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Gallery from "@/components/Gallery";
 import Location from "@/components/Location";
+import Amenities from "@/components/Amenities";
 export default function Home() {
    const heroRef = useRef<HTMLDivElement>(null);
 
@@ -79,6 +80,7 @@ export default function Home() {
       </section>
       <Gallery />
       <Location />
+      <Amenities />
       <Footer />
     </>
   );
