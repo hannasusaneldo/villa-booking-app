@@ -62,12 +62,6 @@ export default function Gallery() {
           ))}
         </div>
 
-        {/* View All Button */}
-        <div style={{ textAlign: "center", marginTop: "3rem" }}>
-          <a href="/gallery" style={{ fontFamily: "'Jost', sans-serif", fontSize: "11px", fontWeight: 400, letterSpacing: "0.25em", textTransform: "uppercase", color: "#0a0806", background: "#D4B98C", textDecoration: "none", padding: "16px 40px", display: "inline-block" }}>
-            View Full Gallery
-          </a>
-        </div>
       </div>
 
       {/* Lightbox */}
