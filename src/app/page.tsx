@@ -2,6 +2,10 @@
 import { useEffect, useRef } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import Gallery from "@/components/Gallery";
+import Location from "@/components/Location";
+import Amenities from "@/components/Amenities";
+import Testimonials from "@/components/Testimonials";
 export default function Home() {
    const heroRef = useRef<HTMLDivElement>(null);
 
@@ -75,6 +79,10 @@ export default function Home() {
           <div className="hero-stat"><div className="hero-stat-number">24/7</div><div className="hero-stat-label">Concierge</div></div>
         </div>
       </section>
+      <Gallery />
+      <Testimonials />
+      <Location />
+      <Amenities />
       <Footer />
     </>
   );
