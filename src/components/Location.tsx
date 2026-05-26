@@ -1,6 +1,6 @@
 ﻿export default function Location() {
   return (
-    <section style={{ backgroundColor: "#0f0d0a", padding: "6rem 0", fontFamily: "'Jost', sans-serif" }}>
+    <section style={{ backgroundColor: "#0a0806", padding: "6rem 0", fontFamily: "'Jost', sans-serif" }}>
       <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 2rem" }}>
         <div style={{ textAlign: "center", marginBottom: "4rem" }}>
           <p style={{ color: "#D4B98C", fontSize: "9px", fontWeight: 300, letterSpacing: "0.35em", textTransform: "uppercase", marginBottom: "1rem" }}>— Find Us —</p>

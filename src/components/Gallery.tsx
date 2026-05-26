@@ -13,14 +13,13 @@ const photos = [
   { src: "/Villa8.jpeg", alt: "Villa View 8" },
 ];
 
-export default function Gallery() {
+export default function Gallery({ preview = false }: { preview?: boolean }) {
   const [lightbox, setLightbox] = useState<number | null>(null);
+  const displayPhotos = preview ? photos.slice(0, 4) : photos;
 
   return (
     <section style={{ backgroundColor: "#0a0806", padding: "6rem 0", fontFamily: "'Jost', sans-serif" }}>
       <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 2rem" }}>
-
-        {/* Section Header */}
         <div style={{ textAlign: "center", marginBottom: "4rem" }}>
           <p style={{ color: "#D4B98C", fontSize: "9px", fontWeight: 300, letterSpacing: "0.35em", textTransform: "uppercase", marginBottom: "1rem" }}>
             — The Villa —
@@ -30,18 +29,17 @@ export default function Gallery() {
           </h2>
         </div>
 
-        {/* Equal Grid */}
         <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "0.75rem" }}>
-          {photos.map((photo, index) => (
+          {displayPhotos.map((photo, index) => (
             <div
               key={index}
-              onClick={() => setLightbox(index)}
+              onClick={() => !preview && setLightbox(index)}
               style={{
                 position: "relative",
                 width: "100%",
                 paddingBottom: "100%",
                 overflow: "hidden",
-                cursor: "pointer",
+                cursor: preview ? "default" : "pointer",
                 backgroundColor: "#1a1a1a",
               }}
             >
@@ -62,10 +60,16 @@ export default function Gallery() {
           ))}
         </div>
 
+        {preview && (
+          <div style={{ textAlign: "center", marginTop: "3rem" }}>
+            <a href="/gallery" style={{ fontFamily: "'Jost', sans-serif", fontSize: "11px", fontWeight: 400, letterSpacing: "0.25em", textTransform: "uppercase", color: "#0a0806", background: "#D4B98C", textDecoration: "none", padding: "16px 40px", display: "inline-block" }}>
+              View Full Gallery
+            </a>
+          </div>
+        )}
       </div>
 
-      {/* Lightbox */}
-      {lightbox !== null && (
+      {!preview && lightbox !== null && (
         <div
           onClick={() => setLightbox(null)}
           style={{ position: "fixed", inset: 0, backgroundColor: "rgba(0,0,0,0.95)", zIndex: 1000, display: "flex", alignItems: "center", justifyContent: "center", padding: "2rem" }}
