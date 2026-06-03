@@ -29,32 +29,27 @@ export default function Gallery({ preview = false }: { preview?: boolean }) {
           </h2>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "0.75rem" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "0.5rem" }}>
           {displayPhotos.map((photo, index) => (
             <div
               key={index}
-              onClick={() => !preview && setLightbox(index)}
+              onClick={() => setLightbox(index)}
+              onTouchEnd={(e) => { e.preventDefault(); setLightbox(index); }}
               style={{
                 position: "relative",
                 width: "100%",
                 paddingBottom: "100%",
                 overflow: "hidden",
-                cursor: preview ? "default" : "pointer",
+                cursor: "pointer",
                 backgroundColor: "#1a1a1a",
+                WebkitTapHighlightColor: "transparent",
               }}
             >
               <Image
                 src={photo.src}
                 alt={photo.alt}
                 fill
-                style={{ objectFit: "cover", transition: "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)" }}
-                onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.05)")}
-                onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
-              />
-              <div
-                style={{ position: "absolute", inset: 0, background: "rgba(10,8,6,0)", transition: "background 0.3s ease" }}
-                onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(10,8,6,0.3)")}
-                onMouseLeave={(e) => (e.currentTarget.style.background = "rgba(10,8,6,0)")}
+                style={{ objectFit: "cover" }}
               />
             </div>
           ))}
@@ -69,24 +64,39 @@ export default function Gallery({ preview = false }: { preview?: boolean }) {
         )}
       </div>
 
-      {!preview && lightbox !== null && (
+      {lightbox !== null && (
         <div
           onClick={() => setLightbox(null)}
-          style={{ position: "fixed", inset: 0, backgroundColor: "rgba(0,0,0,0.95)", zIndex: 1000, display: "flex", alignItems: "center", justifyContent: "center", padding: "2rem" }}
+          onTouchEnd={() => setLightbox(null)}
+          style={{ position: "fixed", inset: 0, backgroundColor: "rgba(0,0,0,0.97)", zIndex: 1000, display: "flex", alignItems: "center", justifyContent: "center", padding: "1rem", touchAction: "none" }}
         >
-          <button onClick={() => setLightbox(null)} style={{ position: "absolute", top: "2rem", right: "2rem", background: "none", border: "1px solid rgba(255,255,255,0.3)", color: "#fff", fontSize: "1rem", cursor: "pointer", padding: "0.5rem 1rem", fontFamily: "'Jost', sans-serif", letterSpacing: "0.1em" }}>
+          <button
+            onClick={() => setLightbox(null)}
+            style={{ position: "absolute", top: "1.5rem", right: "1.5rem", background: "none", border: "1px solid rgba(255,255,255,0.3)", color: "#fff", fontSize: "0.9rem", cursor: "pointer", padding: "0.5rem 1rem", fontFamily: "'Jost', sans-serif", letterSpacing: "0.1em", zIndex: 1001 }}
+          >
             CLOSE
           </button>
-          <button onClick={(e) => { e.stopPropagation(); setLightbox(lightbox > 0 ? lightbox - 1 : photos.length - 1); }} style={{ position: "absolute", left: "2rem", background: "none", border: "none", color: "#D4B98C", fontSize: "3rem", cursor: "pointer" }}>
+          <button
+            onClick={(e) => { e.stopPropagation(); setLightbox(lightbox > 0 ? lightbox - 1 : photos.length - 1); }}
+            onTouchEnd={(e) => { e.stopPropagation(); setLightbox(lightbox > 0 ? lightbox - 1 : photos.length - 1); }}
+            style={{ position: "absolute", left: "1rem", background: "rgba(0,0,0,0.5)", border: "none", color: "#D4B98C", fontSize: "3rem", cursor: "pointer", padding: "1rem", zIndex: 1001, borderRadius: "4px" }}
+          >
             ‹
           </button>
-          <div style={{ position: "relative", width: "80vw", height: "80vh" }}>
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{ position: "relative", width: "90vw", height: "70vh" }}
+          >
             <Image src={photos[lightbox].src} alt={photos[lightbox].alt} fill style={{ objectFit: "contain" }} />
           </div>
-          <button onClick={(e) => { e.stopPropagation(); setLightbox(lightbox < photos.length - 1 ? lightbox + 1 : 0); }} style={{ position: "absolute", right: "2rem", background: "none", border: "none", color: "#D4B98C", fontSize: "3rem", cursor: "pointer" }}>
+          <button
+            onClick={(e) => { e.stopPropagation(); setLightbox(lightbox < photos.length - 1 ? lightbox + 1 : 0); }}
+            onTouchEnd={(e) => { e.stopPropagation(); setLightbox(lightbox < photos.length - 1 ? lightbox + 1 : 0); }}
+            style={{ position: "absolute", right: "1rem", background: "rgba(0,0,0,0.5)", border: "none", color: "#D4B98C", fontSize: "3rem", cursor: "pointer", padding: "1rem", zIndex: 1001, borderRadius: "4px" }}
+          >
             ›
           </button>
-          <p style={{ position: "absolute", bottom: "2rem", color: "rgba(255,255,255,0.4)", fontFamily: "'Jost', sans-serif", fontSize: "9px", letterSpacing: "0.3em", textTransform: "uppercase" }}>
+          <p style={{ position: "absolute", bottom: "1.5rem", color: "rgba(255,255,255,0.4)", fontFamily: "'Jost', sans-serif", fontSize: "9px", letterSpacing: "0.3em", textTransform: "uppercase" }}>
             {lightbox + 1} / {photos.length}
           </p>
         </div>
